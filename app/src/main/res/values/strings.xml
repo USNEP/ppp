@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Pocket</string>
+
+    <string name="title_section1">Home</string>
+    <string name="title_section2">Money In</string>
+    <string name="title_section3">Expenses</string>
+    <string name="title_section4">Money Out</string>
+    <string name="title_section5">Report</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="set_array">
+        <item>Setting</item>
+        <item>About</item>
+        <item>Quit</item>
+
+    </string-array>
+</resources>
