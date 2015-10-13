@@ -4,8 +4,8 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
-@Table(name = "Items")
-public class Items extends Model {
+@Table(name = DbKeys.types)
+public class Types extends Model {
     // This is the unique id given by the server
     @Column(name = "remote_id", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
     public long remoteId;
@@ -13,18 +13,18 @@ public class Items extends Model {
     @Column(name = "Name")
     public String name;
     // This is an association to another activeandroid model
-    @Column(name = "Category", onUpdate = Column.ForeignKeyAction.CASCADE, onDelete = Column.ForeignKeyAction.CASCADE)
-    public Category category;
+    @Column(name = "History", onUpdate = Column.ForeignKeyAction.CASCADE, onDelete = Column.ForeignKeyAction.CASCADE)
+    public History history;
 
     // Make sure to have a default constructor for every ActiveAndroid model
-    public Items(){
+    public Types(){
         super();
     }
 
-    public Items(int remoteId, String name, Category category){
+    public Types(int remoteId, String name, History history){
         super();
         this.remoteId = remoteId;
         this.name = name;
-        this.category = category;
+        this.history = history;
     }
 }

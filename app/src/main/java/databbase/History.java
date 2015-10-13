@@ -7,8 +7,8 @@ import com.activeandroid.query.Select;
 
 import java.util.List;
 
-@Table(name = "Categories")
- public class Category extends Model {
+@Table(name = DbKeys.txns)
+ public class History extends Model {
     // This is the unique id given by the server
     @Column(name = "remote_id", unique = true)
     public long remoteId;
@@ -17,15 +17,15 @@ import java.util.List;
     public String name;
 
     // Make sure to have a default constructor for every ActiveAndroid model
-    public Category(){
+    public History(){
         super();
     }
 
     // Used to return items from another table based on the foreign key
-    public List<Items> items() {
-        return getMany(Items.class, "Category");
+    public List<Types> items() {
+        return getMany(Types.class, "History");
     }
-    public static List<Category> getAll(){
-        return new Select().from(Category.class).execute();
+    public static List<History> getAll(){
+        return new Select().from(History.class).execute();
     }
 }

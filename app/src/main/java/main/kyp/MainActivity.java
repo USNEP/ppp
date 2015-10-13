@@ -9,16 +9,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import java.util.List;
-import java.util.Locale;
 
-import databbase.Category;
+import fgmts.FgmtStarter;
+import global.Constants;
 import main.R;
 
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
@@ -31,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       mBuilder = new NotificationCompat.Builder(MainActivity.this);
+        mBuilder = new NotificationCompat.Builder(MainActivity.this);
 
         // Set up the action bar.
         final ActionBar actionBar = getSupportActionBar();
@@ -48,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         });
 
         for (int i = 0; i < mSectionsPagerAdapter.getCount(); i++) {
-                actionBar.addTab(
+            actionBar.addTab(
                     actionBar.newTab()
                             .setText(mSectionsPagerAdapter.getPageTitle(i))
                             .setTabListener(this));
@@ -67,14 +62,14 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-            int id = item.getItemId();
+        int id = item.getItemId();
         if (id == R.id.action_settings) {
-            System.out.println("setting btn clicked");
-            Category restaurants = new Category();
-            restaurants.remoteId = 2;
-            restaurants.name = "Hotels";
-            restaurants.save();
-            System.out.println("Saved everything.................");
+//            System.out.println("setting btn clicked");
+//            History restaurants = new History();
+//            restaurants.remoteId = 2;
+//            restaurants.name = "Hotels";
+//            restaurants.save();
+//            System.out.println("Saved everything.................");
             return true;
         }
 
@@ -83,8 +78,6 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-        // When the given tab is selected, switch to the corresponding page in
-        // the ViewPager.
         mViewPager.setCurrentItem(tab.getPosition());
     }
 
@@ -104,71 +97,19 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         @Override
         public Fragment getItem(int position) {
-             System.out.println("tab changed........................");
-            return PlaceholderFragment.newInstance(position + 1);
+            return FgmtStarter.newInstance(position + 1);
         }
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
-            return 5;
+            return Constants.numberOfTabs;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            Locale l = Locale.getDefault();
-            switch (position) {
-                case 0:
-                    return getString(R.string.title_section1).toUpperCase(l);
-                case 1:
-                    return getString(R.string.title_section2).toUpperCase(l);
-                case 2:
-                    return getString(R.string.title_section3).toUpperCase(l);
-                case 3:
-                    return getString(R.string.title_section4).toUpperCase(l);
-                case 4:
-                    return getString(R.string.title_section5).toUpperCase(l);
-            }
-            return null;
+            return Constants.tabNames[position];
+
         }
     }
-
-    public static class PlaceholderFragment extends Fragment {
-
-        private static final String ARG_SECTION_NUMBER = "section_number";
-
-        public static PlaceholderFragment newInstance(int sectionNumber) {
-            PlaceholderFragment fragment = new PlaceholderFragment();
-            Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
-            fragment.setArguments(args);
-            return fragment;
-        }
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-          int i=  getArguments().getInt(ARG_SECTION_NUMBER);
-            TextView tv=(TextView)rootView.findViewById(R.id.section_label);
-            String s="";
-            if (i==2){
-                List<Category> c=Category.getAll();
-                for(Category p:c){
-                    s=s+p.getId()+"  ";
-                }
-                tv.setText(s);
-
-            }else {
-                tv.setText(String.valueOf(i));
-            }
-            return rootView;
-        }
-    }
-
-
 
 }
