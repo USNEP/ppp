@@ -22,7 +22,7 @@ public class Global {
     public static Global global;
     Calendar myCalendar;
     EditText edtText;
-    SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
+   SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
 
     public EditText getEdtText() {
         return edtText;

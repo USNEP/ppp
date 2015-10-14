@@ -24,17 +24,14 @@ public  class FgmtStarter extends Fragment {
             tfg.setArguments(args);
             return tfg;
         }else if(sectionNumber==1){
-            TxnFgmt tfg=new TxnFgmt();
-            Bundle args = new Bundle();
-            args.putInt(Constants.ARG_SECTION_NUMBER, sectionNumber);
-            tfg.setArguments(args);
-            return tfg;
-        }
-        else
-        {
             FgmtStarter fragment = new FgmtStarter();
             return fragment;
 
+        }
+        else
+        {
+            Report tfg=new Report();
+             return tfg;
         }
     }
 

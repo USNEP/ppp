@@ -21,6 +21,11 @@ public class Constants {
     public static final String LBL_OUT_FOR = "Out For :";
     public static final String LBL_FROM = "From :";
     public static final String ARG_FRGMT = "drawer";
+    public static final List<String> REPORT_LIST_INCOME=Arrays.asList(MONEY_IN_TYPES[0]);
+    public static final List<String> REPORT_LIST_EXPENSE=Arrays.asList(TAB_NAMES[2]);
+    public static final List<String> REPORT_LIST_LOANS=Arrays.asList("Loans");
+    public static final List<String> REPORT_LIST_INVESTMENT=Arrays.asList(MONEY_OUT_TYPES[2]);
+
 
 
 

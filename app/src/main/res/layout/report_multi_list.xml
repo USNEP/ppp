@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+    <ScrollView
+
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scroll_list"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        android:fadeScrollbars="false"
+        >
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+
+            >
+            <TextView
+                android:id="@+id/lblHead"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="false"
+                android:text="REPORT"
+                />
+            <LinearLayout
+                android:id="@+id/datePanel"
+                android:layout_below="@+id/lblHead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+                <TextView
+                    android:id="@+id/lbldate1"
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="From"
+                    />
+                <EditText
+                    android:id="@+id/editDate1"
+                    android:layout_marginLeft="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:focusable="false"
+                    android:text="................."
+                    android:theme="@android:style/Theme.Holo"
+                    android:textColor="@color/material_blue_grey_950"
+                    style="?android:attr/spinnerStyle"
+
+                    />
+                <TextView
+                    android:id="@+id/lbldate2"
+                    android:layout_marginLeft="5dp"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="To"
+                    />
+                <EditText
+                    android:id="@+id/editDate2"
+                    android:layout_marginLeft="5dp"
+                    android:focusable="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="............."
+                    android:theme="@android:style/Theme.Holo"
+                    android:textColor="@color/material_blue_grey_950"
+                    style="?android:attr/spinnerStyle"
+
+                    />
+                <Button
+                    android:layout_marginLeft="5dp"
+
+                    android:id="@+id/btnShow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Load"
+                    android:textSize="10dp"
+                    android:layout_marginRight="15dp"
+
+                    />
+
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/listView1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/datePanel"
+                android:layout_marginRight="15dp"
+
+                >
+            </ListView>
+
+            <ListView
+                android:id="@+id/listView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/listView1"
+                android:layout_marginRight="15dp"
+                >
+            </ListView>
+            <ListView
+                android:id="@+id/listView3"
+                android:layout_below="@+id/listView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="25dp"
+
+                >
+            </ListView>
+            <ListView
+                android:id="@+id/listView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/listView3"
+                android:layout_marginRight="15dp"
+                >
+            </ListView>
+
+            <ListView
+                android:id="@+id/listView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/listView4"
+                android:layout_marginRight="25dp"
+                android:layout_marginLeft="15dp"
+
+                >
+            </ListView>
+
+            <ListView
+                android:id="@+id/listView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/listView5"
+                android:layout_marginRight="15dp"
+
+                >
+            </ListView>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
