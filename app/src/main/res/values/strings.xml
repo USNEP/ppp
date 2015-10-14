@@ -8,10 +8,8 @@
     <string name="title_section5">Report</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string-array name="set_array">
-        <item>Setting</item>
-        <item>About</item>
-        <item>Quit</item>
+    <string name="create_new">Create New</string>
+    <string name="about">About</string>
+    <string name="txn">Enter</string>
 
-    </string-array>
 </resources>

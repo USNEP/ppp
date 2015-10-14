@@ -26,22 +26,13 @@
         android:textColor="@color/material_blue_grey_950"
         />
 
-    <TextView
-        android:id="@+id/lblTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter Contact Details"
-        android:layout_marginLeft="17dp"
-        android:layout_marginTop="60dp"
-        android:ems="10"
-        android:textSize="20dp"
-        />
+
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
       android:id="@+id/form"
          android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="75dp"
+        android:layout_marginTop="50dp"
         >
 
         <Spinner
@@ -54,7 +45,8 @@
             android:layout_marginRight="19dp"
             android:clickable="false"
             android:dropDownWidth="@android:dimen/thumbnail_width"
-            android:theme="@android:style/Theme.Holo"
+            android:dropDownHeight="@android:dimen/thumbnail_height"
+
             />
         <TextView
             android:id="@+id/lblspinner1"
@@ -103,14 +95,14 @@
             android:spinnerMode="dropdown"
             android:clickable="false"
             android:dropDownWidth="@android:dimen/thumbnail_width"
-            android:theme="@android:style/Theme.Holo"            />
+                       />
         <Button
             android:id="@+id/btnCreate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/spinnerList"
             android:layout_alignParentRight="true"
-            android:text="click"
+            android:text="@string/create_new"
             android:layout_marginRight="19dp"
             android:layout_marginTop="16dp"
             />
@@ -214,7 +206,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/fldComment"
             android:layout_centerHorizontal="true"
-            android:text="Add"
+            android:text="@string/txn"
             android:layout_marginTop="16dp"
             />
 

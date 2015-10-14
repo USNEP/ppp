@@ -3,29 +3,34 @@ package databbase;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
-import com.activeandroid.query.Select;
 
-import java.util.List;
-
-@Table(name = DbKeys.txns)
+@Table(name = DbKeys.TXNS)
  public class History extends Model {
-    // This is the unique id given by the server
-    @Column(name = "remote_id", unique = true)
-    public long remoteId;
-    // This is a regular field
-    @Column(name = "Name")
-    public String name;
 
-    // Make sure to have a default constructor for every ActiveAndroid model
     public History(){
         super();
     }
+    @Column(name = DbKeys.TYPE)
+    public String type;
+    @Column(name = DbKeys.CB)
+    public boolean cashOrBank;
+    @Column(name = DbKeys.AMT)
+    public double amount;
+    @Column(name = DbKeys.DCPN)
+    public String dcpn;
+    @Column(name = DbKeys.DATE)
+    public String date;
+    @Column(name = DbKeys.SUB_TYPE, onUpdate = Column.ForeignKeyAction.CASCADE, onDelete = Column.ForeignKeyAction.CASCADE)
+    public Types subType;
 
-    // Used to return items from another table based on the foreign key
-    public List<Types> items() {
-        return getMany(Types.class, "History");
+    public History(String type, boolean cashOrBank, double amount,String dcpn, String date,Types subType){
+        super();
+        this.type = type;
+        this.cashOrBank = cashOrBank;
+        this.dcpn = dcpn;
+        this.subType = subType;
+        this.date = date;
+        this.amount = amount;
     }
-    public static List<History> getAll(){
-        return new Select().from(History.class).execute();
-    }
+
 }

@@ -1,5 +1,6 @@
 package main.kyp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,8 +13,9 @@ import android.support.v7.app.NotificationCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import fgmts.FgmtStarter;
+import tabFgmts.FgmtStarter;
 import global.Constants;
+import global.Global;
 import main.R;
 
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
@@ -26,9 +28,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mBuilder = new NotificationCompat.Builder(MainActivity.this);
-
-        // Set up the action bar.
+        Global.getInstance();
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -49,10 +49,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                             .setTabListener(this));
         }
 
-
-
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -63,13 +60,9 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings) {
-//            System.out.println("setting btn clicked");
-//            History restaurants = new History();
-//            restaurants.remoteId = 2;
-//            restaurants.name = "Hotels";
-//            restaurants.save();
-//            System.out.println("Saved everything.................");
+        if (id == R.id.setting) {
+            Intent in = new Intent(getBaseContext(), SettingActivity.class);
+            startActivity(in);
             return true;
         }
 
@@ -102,12 +95,12 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
 
         @Override
         public int getCount() {
-            return Constants.numberOfTabs;
+            return Constants.NUMBER_OF_TABS;
         }
 
         @Override
         public CharSequence getPageTitle(int position) {
-            return Constants.tabNames[position];
+            return Constants.TAB_NAMES[position];
 
         }
     }

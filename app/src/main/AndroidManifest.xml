@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="AA_DB_NAME"
-            android:value="pocket.db" />
+            android:value="kyp.db" />
         <meta-data
             android:name="AA_DB_VERSION"
             android:value="2" />
@@ -25,6 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity  android:name="main.kyp.SettingActivity"/>
+        <activity  android:name="main.kyp.EditTypeActivity"/>
+
     </application>
 
 

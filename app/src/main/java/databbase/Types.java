@@ -3,28 +3,40 @@ package databbase;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
 
-@Table(name = DbKeys.types)
+import java.util.List;
+
+@Table(name = DbKeys.TYPES)
 public class Types extends Model {
-    // This is the unique id given by the server
-    @Column(name = "remote_id", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
-    public long remoteId;
-    // This is a regular field
-    @Column(name = "Name")
-    public String name;
-    // This is an association to another activeandroid model
-    @Column(name = "History", onUpdate = Column.ForeignKeyAction.CASCADE, onDelete = Column.ForeignKeyAction.CASCADE)
-    public History history;
-
-    // Make sure to have a default constructor for every ActiveAndroid model
-    public Types(){
+    public Types(){}
+    @Column(name = DbKeys.HEAD)
+    public String head;
+    @Column(name = DbKeys.TYPE, unique = true)
+    public String type;
+    public Types( String head, String type){
         super();
+        this.head = head;
+        this.type = type;
+    }
+    public List<History> items() {
+        return getMany(History.class, DbKeys.SUB_TYPE);
+    }
+    public static List<Types> getAll(){
+        return new Select().from(Types.class).execute();
+    }
+    public static List<Types> getSubTypeByHead(String head) {
+        return new Select()
+                .from(Types.class)
+                .where(DbKeys.HEAD + " = ?", head)
+                 .execute();
+    }
+    public static Types getSubTypeByName(String type) {
+        return new Select()
+                .from(Types.class)
+                .where(DbKeys.TYPE + " = ?", type)
+                .executeSingle();
     }
 
-    public Types(int remoteId, String name, History history){
-        super();
-        this.remoteId = remoteId;
-        this.name = name;
-        this.history = history;
-    }
+
 }

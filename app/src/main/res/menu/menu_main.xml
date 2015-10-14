@@ -9,11 +9,11 @@
         android:icon="@drawable/setting"
         >
     <menu>
-        <item android:id="@+id/top"
-            android:title="Quit"
+        <item android:id="@+id/setting"
+            android:title="@string/action_settings"
             />
-        <item android:id="@+id/bottom"
-            android:title="about" />
+        <item android:id="@+id/about"
+            android:title="@string/about" />
     </menu>
     </item>
 </menu>
