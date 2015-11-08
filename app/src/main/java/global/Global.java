@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import databbase.DataBaseHandler;
 import databbase.Types;
 
 /**
@@ -19,6 +20,8 @@ import databbase.Types;
 public class Global {
 
 
+
+    private DataBaseHandler db;
     public static Global global;
     Calendar myCalendar;
     EditText edtText;
@@ -75,5 +78,12 @@ public class Global {
             s.add(t.type);
         }
         return s;
+    }
+    public DataBaseHandler getDb() {
+        return db;
+    }
+
+    public void setDb(DataBaseHandler db) {
+        this.db = db;
     }
 }

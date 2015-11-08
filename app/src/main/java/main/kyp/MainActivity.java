@@ -13,6 +13,7 @@ import android.support.v7.app.NotificationCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import databbase.DataBaseHandler;
 import tabFgmts.FgmtStarter;
 import global.Constants;
 import global.Global;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Global.getInstance();
+        Global.global.setDb(new DataBaseHandler(getApplicationContext()));
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());

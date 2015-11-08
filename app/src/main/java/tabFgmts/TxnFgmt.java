@@ -178,8 +178,8 @@ public class TxnFgmt extends Fragment  implements  View.OnClickListener{
     public void addEntry(){
         if(validateForm()){
             try {
-                history.save();
-                clearForm();
+             if(History.addTxns(history))
+               clearForm();
             }catch(Exception e){
                 e.printStackTrace();
             }
@@ -193,7 +193,7 @@ public class TxnFgmt extends Fragment  implements  View.OnClickListener{
         if(!type.isEmpty() || type.length()>10) {
            Types tp = new Types(head, type);
             try {
-                tp.save();
+                Types.addType(tp);
 
             }catch(Exception e){
                 e.printStackTrace();
@@ -260,7 +260,7 @@ public class TxnFgmt extends Fragment  implements  View.OnClickListener{
             history.amount = Double.parseDouble(fldAmount.getText().toString());
             history.dcpn=fldComment.getText().toString();
             history.date = dat.getText().toString();
-            history.subType=Types.getSubTypeByName(fldSubType.getSelectedItem().toString());
+            history.subType=Types.getSubTypeByName(fldSubType.getSelectedItem().toString()).id;
         }catch(Exception e)
         {
             return false;

@@ -126,7 +126,7 @@ public class SettingListAdaptor extends ArrayAdapter<String> {
     public boolean  deleteType(String value){
         try {
             Types type = Types.getSubTypeByName(value);
-            type.delete();
+          //  type.delete();
         }
         catch(Exception e){
             e.printStackTrace();
@@ -138,7 +138,8 @@ public class SettingListAdaptor extends ArrayAdapter<String> {
         try{
         Types type=Types.getSubTypeByName(firstValue);
         type.type=updatValue;
-        type.save();}
+        Types.updateType(type);
+        }
         catch(Exception e){
             e.printStackTrace();
             return false;

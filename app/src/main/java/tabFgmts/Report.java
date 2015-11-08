@@ -1,6 +1,7 @@
 package tabFgmts;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,9 +20,12 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
+import databbase.History;
+import databbase.Querys;
 import global.Constants;
 import global.Global;
 import main.R;
+import main.kyp.TypeRepActivity;
 import reports.ReportArrayAdopter;
 import reports.ReportData;
 
@@ -37,6 +42,8 @@ public class Report extends Fragment implements ListView.OnItemClickListener{
     EditText to;
     Calendar myDte= Calendar.getInstance();
     Button btnLoad;
+    String fromDate="";
+    String toDate="";
     SimpleDateFormat sdf = new SimpleDateFormat(Constants.DATE_FORMAT, Locale.US);
     public Report() {
     }
@@ -93,21 +100,29 @@ public class Report extends Fragment implements ListView.OnItemClickListener{
                 }
                 break;
             default:
+                fromDate=from.getText().toString();
+                toDate=to.getText().toString();
+                TextView tv=(TextView)view.findViewById(R.id.st_row);
+                Intent in = new Intent(getContext(), TypeRepActivity.class);
+                in.putExtra(Constants.ARG_ARRAY_REPORT, new String[]{tv.getText().toString(),fromDate,toDate});
+                startActivity(in);
         }
     }
     View.OnClickListener loadListener = new View.OnClickListener(){
         public void onClick(View v) {
-           // refreshView();
+            refreshView();
         }
     };
     public void refreshView(){
 
         list_view1.setAdapter(new ReportArrayAdopter(getActivity(), getReportArray(Constants.REPORT_LIST_INCOME)));
-        list_view2.setAdapter(new ReportArrayAdopter(getActivity(),getReportArray(Constants.REPORT_LIST_EXPENSE)));
-        list_view4.setAdapter(new ReportArrayAdopter(getActivity(),getReportArray(Constants.REPORT_LIST_LOANS)));
+        List<ReportData> rp= getReportArray(Arrays.asList(Constants.EXPENSES_TYPES));
+        list_view2.setAdapter(new ReportArrayAdopter(getActivity(),getTotal(rp,Constants.REPORT_LIST_EXPENSE)));
+        list_view3.setAdapter(new ReportArrayAdopter(getActivity(), rp));
+        rp= getReportArray(Constants.LOAN_ITEMS);
+        list_view4.setAdapter(new ReportArrayAdopter(getActivity(),getLoanTotal(rp,Constants.REPORT_LIST_LOANS)));
+        list_view5.setAdapter(new ReportArrayAdopter(getActivity(), rp));
         list_view6.setAdapter(new ReportArrayAdopter(getActivity(), getReportArray(Constants.REPORT_LIST_INVESTMENT)));
-        list_view3.setAdapter(new ReportArrayAdopter(getActivity(), getReportArray(Arrays.asList(Constants.EXPENSES_TYPES))));
-        list_view5.setAdapter(new ReportArrayAdopter(getActivity(), getReportArray(Constants.LOAN_ITEMS)));
     }
     View.OnClickListener date_listener = new View.OnClickListener(){
         public void onClick(View v) {
@@ -115,12 +130,31 @@ public class Report extends Fragment implements ListView.OnItemClickListener{
         }
     };
     public List<ReportData> getReportArray(List<String> lst){
+         fromDate=from.getText().toString();
+         toDate=to.getText().toString();
         List<ReportData> rp=new ArrayList<ReportData>();
        for(String st:lst){
-           ReportData  data=new ReportData(st,200);
-           rp.add(data);
+           rp.add(History.getAmountByHead(st,Querys.getAmtByHeadQry(st, fromDate, toDate)));
        }
         return rp;
     }
+    public List<ReportData> getTotal(List<ReportData> rep,List<String> lst){
+        double value=0;
+         for(ReportData r:rep){
+            value=value+r.getAmount();
+         }
+         rep=new ArrayList<ReportData>();
+        rep.add(new ReportData(lst.get(0),value));
+        return  rep;
+    }
+
+    public List<ReportData> getLoanTotal(List<ReportData> rep,List<String> lst){
+        double value=rep.get(0).getAmount()-rep.get(1).getAmount()-rep.get(2).getAmount();
+        rep=new ArrayList<ReportData>();
+        rep.add(new ReportData(lst.get(0),value));
+        return  rep;
+
+    }
+
 }
 

@@ -4,10 +4,16 @@ package databbase;
  * Created by ashok on 10/13/15.
  */
 public class DbKeys {
+    //Database Name
+    public static final String DB_NAME ="pkt";
+    //DB Version
+    public static final int DATABASE_VERSION = 6;
+
     //Table names
     public static final String TXNS ="Txns";
     public static final String TYPES ="Types";
     //Column names
+    public static final String ID ="id";
     public static final String HEAD ="head";
     public static final String TYPE ="type";
     public static final String CB ="cb";

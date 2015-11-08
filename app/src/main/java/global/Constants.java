@@ -8,6 +8,7 @@ public class Constants {
     public static final int NUMBER_OF_TABS =5;
     public static final  String[] TAB_NAMES ={"Home","Money In","Expenses","Money Out","Report"};
     public static final String ARG_SECTION_NUMBER = "section_number";
+    public static final String ARG_ARRAY_REPORT = "report_array";
     public static final String DATE_FORMAT = "yyyy-MM-dd";
     public static final  String[] MONEY_IN_TYPES={"Income","Loan Taken"};
     public static final  String[] EXPENSES_TYPES={"Day to Day Expenses","Periodic Expenses","Educational Expenses","Other Expenses"};
