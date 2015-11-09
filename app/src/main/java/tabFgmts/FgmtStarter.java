@@ -47,6 +47,7 @@ public  class FgmtStarter extends Fragment {
         TextView cash=(TextView)rootView.findViewById(R.id.value_cash);
         TextView loan=(TextView)rootView.findViewById(R.id.value_loan);
         TextView status=(TextView)rootView.findViewById(R.id.valueStatus);
+        //comment
                 return rootView;
     }
 }
