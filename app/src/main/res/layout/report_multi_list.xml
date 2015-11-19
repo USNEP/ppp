@@ -3,15 +3,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     >
-    <ScrollView
 
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/scroll_list"
-        android:fillViewport="true"
-        android:orientation="vertical"
-        android:fadeScrollbars="false"
-        >
         <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,13 +13,23 @@
             >
             <TextView
                 android:id="@+id/lblHead"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="false"
                 android:text="REPORT"
                 />
+            <HorizontalScrollView
+                android:id="@+id/hsv"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:fillViewport="true"
+                android:measureAllChildren="false"
+                android:scrollbars="none"
+                android:layout_marginTop="15dp"
+                >
             <LinearLayout
                 android:id="@+id/datePanel"
                 android:layout_below="@+id/lblHead"
@@ -36,7 +38,7 @@
                 >
                 <TextView
                     android:id="@+id/lbldate1"
-                    android:layout_marginLeft="15dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="16dp"
@@ -79,23 +81,23 @@
                     />
                 <Button
                     android:layout_marginLeft="5dp"
-
                     android:id="@+id/btnShow"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Load"
                     android:textSize="10dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_marginRight="5dp"
 
                     />
 
             </LinearLayout>
+            </HorizontalScrollView>
 
             <ListView
                 android:id="@+id/listView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/datePanel"
+                android:layout_below="@+id/hsv"
                 android:layout_marginRight="15dp"
 
                 >
@@ -149,5 +151,4 @@
                 >
             </ListView>
         </RelativeLayout>
-    </ScrollView>
 </RelativeLayout>

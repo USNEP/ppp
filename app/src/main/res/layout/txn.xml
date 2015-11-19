@@ -37,7 +37,7 @@
 
         <Spinner
             android:id="@+id/spinnerList1"
-            android:layout_width="wrap_content"
+            android:layout_width="@android:dimen/thumbnail_width"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
@@ -45,7 +45,6 @@
             android:layout_marginRight="19dp"
             android:clickable="false"
             android:dropDownWidth="@android:dimen/thumbnail_width"
-            android:dropDownHeight="@android:dimen/thumbnail_height"
 
             />
         <TextView

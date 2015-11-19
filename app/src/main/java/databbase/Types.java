@@ -42,6 +42,9 @@ public class Types {
         return Global.global.getDb().updateType(values)==0?false:true;
 
     }
+    public static boolean deleteType(String type){
+        return Global.global.getDb().deleteType(type);
+    }
 
 
 }

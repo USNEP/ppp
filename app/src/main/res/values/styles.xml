@@ -16,7 +16,7 @@
     <style name="ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
         <item name="android:background">#D81B60</item>
         <item name="background">@drawable/act_color</item>
-
+        <item name="android:icon">@drawable/app</item>
 
     </style>
     <style

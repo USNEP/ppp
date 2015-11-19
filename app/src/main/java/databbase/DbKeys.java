@@ -25,6 +25,9 @@ public class DbKeys {
 
     //field keys
     public static final String LOAN_TYPE ="loan";
+    public static final String BANK ="bank";
+    public static final String BANKTOCASH="b2c";
+    public static final String CASHTOBANK="c2b";
 
 
 }

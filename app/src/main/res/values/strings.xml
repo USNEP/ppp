@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pocket</string>
+    <string name="app_name">KYP</string>
 
     <string name="title_section1">Home</string>
     <string name="title_section2">Money In</string>
@@ -10,6 +10,9 @@
     <string name="action_settings">Settings</string>
     <string name="create_new">Create New</string>
     <string name="about">About</string>
+    <string name="cash_to_bank">Cash To Bank</string>
+    <string name="bank_to_cash">Bank To Cash</string>
+    <string name="all_txns">Latest Entries</string>
     <string name="txn">Enter</string>
 
 </resources>

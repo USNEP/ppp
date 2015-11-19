@@ -44,6 +44,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         System.out.println("Txns added >>>>>>>>>>");
         db.close(); // Closing database connection
         }catch(Exception e) {
+            db.close();
             e.printStackTrace();
             return false;
         }
@@ -56,6 +57,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
             System.out.println("Type added >>>>>>>>>>");
             db.close();
         }catch(Exception e) {
+            db.close();
             e.printStackTrace();
             return false;
         }
@@ -151,5 +153,65 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         }
         return contactList;
     }
+    public double getStatus(String query){
+        System.out.println(query);
+        double amt=0;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                try {
+                    amt = Double.parseDouble(cursor.getString(0));
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            } while (cursor.moveToNext());
+        }
+        return amt;
+    }
 
+    public boolean deleteType(String type) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            db.delete(DbKeys.TYPES, DbKeys.TYPE + " = ?",
+                    new String[]{type});
+        }catch(Exception e){
+            db.close();
+            return false;
+        }
+        db.close();
+        return true;
+    }
+    public boolean deleteHistoryByType(String type) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+        db.delete(DbKeys.TXNS, DbKeys.SUB_TYPE + " = ?",
+                new String[]{type});
+        }catch(Exception e){
+            db.close();
+            return false;
+        }
+        db.close();
+        return true;
+    }
+    public List<History> getLast30Txns(String qry) {
+        List<History> contactList = new ArrayList<History>();
+        System.out.println(qry);
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(qry, null);
+        if (cursor.moveToFirst()) {
+            do {
+                History contact = new History();
+                contact.id=Long.parseLong(cursor.getString(0));
+                contact.type=(cursor.getString(1));
+                contact.cashOrBank=(cursor.getString(2) == DbKeys.CB ? true : false);
+                contact.amount=(Double.valueOf(cursor.getString(3)));
+                contact.dcpn=(cursor.getString(4));
+                contact.date=(cursor.getString(5));
+                contact.subType=Long.parseLong(cursor.getString(6));
+                contactList.add(contact);
+            } while (cursor.moveToNext());
+        }
+        return contactList;
+    }
 }

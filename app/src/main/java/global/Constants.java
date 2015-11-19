@@ -6,6 +6,7 @@ import java.util.List;
 public class Constants {
 
     public static final int NUMBER_OF_TABS =5;
+    public static final int NUMBER_OF_Txns =30;
     public static final  String[] TAB_NAMES ={"Home","Money In","Expenses","Money Out","Report"};
     public static final String ARG_SECTION_NUMBER = "section_number";
     public static final String ARG_ARRAY_REPORT = "report_array";
@@ -26,9 +27,13 @@ public class Constants {
     public static final List<String> REPORT_LIST_EXPENSE=Arrays.asList(TAB_NAMES[2]);
     public static final List<String> REPORT_LIST_LOANS=Arrays.asList("Loans");
     public static final List<String> REPORT_LIST_INVESTMENT=Arrays.asList(MONEY_OUT_TYPES[2]);
-
-
-
-
+    public static final String ABOUT = "This is Pocket Transections recording";
+    public static final String C2BHEAD = "Enter amount for Cash to Bank";
+    public static final String B2CHEAD = "Enter amount for Bank to Cash";
+    public static final String C2B_B2C = "Confirm";
+    public static final String C2B_DCPN = "Cash deposited in Bank";
+    public static final String B2C_DCPN = "Cash withdrawn from Bank";
+    public static final String EXIT_TITLE = "Exit KYP?";
+    public static final String CONFIRM_EXIT_MSZ = "Are you sure to exit the application?";
 
 }

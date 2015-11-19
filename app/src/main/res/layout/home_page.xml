@@ -18,7 +18,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/homeDisplay"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         >
 
@@ -94,7 +94,7 @@
             android:layout_alignBaseline="@+id/valueStatus"
             android:layout_alignBottom="@+id/valueStatus"
             android:layout_alignLeft="@+id/lblLoan"
-            android:text="Your Status:"
+            android:text="Investment:"
             />
 
         <TextView
@@ -109,5 +109,53 @@
 
 
     </RelativeLayout>
-
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/home_btns"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/homeDisplay"
+        android:gravity="center"
+        >
+        <HorizontalScrollView
+            android:id="@+id/hsv"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:fillViewport="true"
+            android:measureAllChildren="false"
+            android:scrollbars="none" >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginLeft = "1dp">
+        <Button
+            android:id="@+id/c2b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cash_to_bank"
+            android:layout_gravity="left"
+            android:textAllCaps="false"
+            />
+        <Button
+            android:id="@+id/b2c"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/bank_to_cash"
+            android:layout_gravity="center_horizontal"
+            android:textAllCaps="false"
+            />
+        <Button
+            android:id="@+id/all_txns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/all_txns"
+            android:layout_gravity="right"
+            android:textAllCaps="false"
+            />
+        </LinearLayout>
+        </HorizontalScrollView>
+    </RelativeLayout>
 </RelativeLayout>

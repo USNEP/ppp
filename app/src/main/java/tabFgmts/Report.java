@@ -90,6 +90,7 @@ public class Report extends Fragment implements ListView.OnItemClickListener{
                     list_view3.setVisibility(View.GONE);}
                 else{
                     list_view3.setVisibility(View.VISIBLE);
+                    list_view5.setVisibility(View.GONE);
                 }
                 break;
             case R.id.listView4:
@@ -97,6 +98,7 @@ public class Report extends Fragment implements ListView.OnItemClickListener{
                     list_view5.setVisibility(View.GONE);}
                 else{
                     list_view5.setVisibility(View.VISIBLE);
+                    list_view3.setVisibility(View.GONE);
                 }
                 break;
             default:

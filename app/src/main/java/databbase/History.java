@@ -45,7 +45,7 @@ import reports.ReportData;
      public static boolean addTxns(History hst){
          ContentValues values = new ContentValues();
          values.put(DbKeys.TYPE, hst.type);
-         values.put(DbKeys.CB, hst.cashOrBank?DbKeys.CB:"");
+         values.put(DbKeys.CB, hst.cashOrBank?DbKeys.CB:DbKeys.BANK);
          values.put(DbKeys.DCPN, hst.dcpn);
          values.put(DbKeys.SUB_TYPE, hst.subType);
          values.put(DbKeys.DATE, hst.date);
@@ -57,5 +57,13 @@ import reports.ReportData;
      }
      public static List<History> getIndvHistory(String qry) {
          return Global.global.getDb().indvHistory(qry);
+     }
+     public static boolean deleteTxnsByType(String subType){
+         return Global.global.getDb().deleteHistoryByType(subType);
+
+     }
+     public static List<History> getTxns(){
+         return Global.global.getDb().getLast30Txns(Querys.TXNSQRY);
+
      }
 }

@@ -1,5 +1,6 @@
 package main.kyp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,16 +9,18 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import databbase.DataBaseHandler;
-import tabFgmts.FgmtStarter;
 import global.Constants;
 import global.Global;
 import main.R;
+import tabFgmts.FgmtStarter;
 
 public class MainActivity extends AppCompatActivity implements ActionBar.TabListener {
 
@@ -56,9 +59,25 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        ActionBar actionBar=getSupportActionBar();
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setHomeAsUpIndicator(R.drawable.app);
+        actionBar.setDisplayHomeAsUpEnabled(true);
         return true;
     }
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle(Constants.EXIT_TITLE)
+                .setMessage(Constants.CONFIRM_EXIT_MSZ)
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        MainActivity.super.onBackPressed();
+                    }
+                }).create().show();
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -67,9 +86,17 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
             startActivity(in);
             return true;
         }
+        if (id == R.id.about) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("About");
+                final TextView input = new TextView(MainActivity.this);
+                input.setText(Constants.ABOUT);
+                 builder.setView(input);
+                builder.show();
+            }
+            return true;
+        }
 
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {

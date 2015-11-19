@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import databbase.History;
 import databbase.Types;
 import main.R;
 
@@ -125,8 +126,9 @@ public class SettingListAdaptor extends ArrayAdapter<String> {
     }
     public boolean  deleteType(String value){
         try {
+            Types.deleteType(value);
             Types type = Types.getSubTypeByName(value);
-          //  type.delete();
+            History.deleteTxnsByType(String.valueOf(type.id));
         }
         catch(Exception e){
             e.printStackTrace();
