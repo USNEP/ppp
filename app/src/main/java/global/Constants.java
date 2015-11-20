@@ -27,7 +27,7 @@ public class Constants {
     public static final List<String> REPORT_LIST_EXPENSE=Arrays.asList(TAB_NAMES[2]);
     public static final List<String> REPORT_LIST_LOANS=Arrays.asList("Loans");
     public static final List<String> REPORT_LIST_INVESTMENT=Arrays.asList(MONEY_OUT_TYPES[2]);
-    public static final String ABOUT = "This is Pocket Transections recording";
+    public static final String ABOUT = "Expenses and Income recording created by AK.";
     public static final String C2BHEAD = "Enter amount for Cash to Bank";
     public static final String B2CHEAD = "Enter amount for Bank to Cash";
     public static final String C2B_B2C = "Confirm";

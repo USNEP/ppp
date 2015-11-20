@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -24,11 +25,13 @@ import global.Global;
 import main.R;
 import main.kyp.AllTxnsActivity;
 
-public class Home extends Fragment implements  View.OnClickListener{
+public class Home extends Fragment implements  View.OnClickListener,SwipeRefreshLayout.OnRefreshListener {
     TextView bank;
     TextView cash;
     TextView loan;
     TextView status;
+
+     SwipeRefreshLayout swipeView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,6 +46,13 @@ public class Home extends Fragment implements  View.OnClickListener{
         c2b.setOnClickListener(this);
         b2c.setOnClickListener(this);
         all_txns.setOnClickListener(this);
+         swipeView = (SwipeRefreshLayout)rootView.findViewById(R.id.swipe_container);
+        swipeView.setOnRefreshListener(this);
+        swipeView.setColorSchemeResources(
+                R.color.refresh_progress_1,
+                R.color.refresh_progress_2,
+                R.color.refresh_progress_3);
+
         populateValues();
         return rootView;
     }
@@ -107,5 +117,23 @@ public class Home extends Fragment implements  View.OnClickListener{
         cash.setText(String.valueOf(sts.getCash()));
         loan.setText(String.valueOf(sts.getLoan()));
         status.setText(String.valueOf(sts.getInvestment()));
+    }
+
+    @Override
+    public void onRefresh() {
+        Runnable swipeShow=new Runnable() {
+            @Override
+            public void run() {
+                swipeView.setRefreshing(true);
+            }
+        };
+        swipeView.post(swipeShow);
+        populateValues();
+        swipeView.post(new Runnable() {
+            @Override
+            public void run() {
+                swipeView.setRefreshing(false);
+            }
+        });
     }
 }

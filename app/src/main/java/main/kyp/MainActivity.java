@@ -12,6 +12,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -27,14 +28,14 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     NotificationCompat.Builder mBuilder;
     SectionsPagerAdapter mSectionsPagerAdapter;
     ViewPager mViewPager;
-
+    ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Global.getInstance();
         Global.global.setDb(new DataBaseHandler(getApplicationContext()));
-        final ActionBar actionBar = getSupportActionBar();
+       actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -60,23 +61,27 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         ActionBar actionBar=getSupportActionBar();
-        actionBar.setHomeButtonEnabled(false);
+        actionBar.setHomeButtonEnabled(true);
         actionBar.setHomeAsUpIndicator(R.drawable.app);
         actionBar.setDisplayHomeAsUpEnabled(true);
         return true;
     }
     @Override
     public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setTitle(Constants.EXIT_TITLE)
-                .setMessage(Constants.CONFIRM_EXIT_MSZ)
-                .setNegativeButton(android.R.string.no, null)
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+        if(actionBar.getSelectedNavigationIndex()==0) {
+            new AlertDialog.Builder(this)
+                    .setTitle(Constants.EXIT_TITLE)
+                    .setMessage(Constants.CONFIRM_EXIT_MSZ)
+                    .setNegativeButton(android.R.string.no, null)
+                    .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
-                    public void onClick(DialogInterface arg0, int arg1) {
-                        MainActivity.super.onBackPressed();
-                    }
-                }).create().show();
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            MainActivity.super.onBackPressed();
+                        }
+                    }).create().show();
+        }else {
+            actionBar.setSelectedNavigationItem(0);
+        }
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -91,9 +96,14 @@ public class MainActivity extends AppCompatActivity implements ActionBar.TabList
                 builder.setTitle("About");
                 final TextView input = new TextView(MainActivity.this);
                 input.setText(Constants.ABOUT);
-                 builder.setView(input);
+            input.setGravity(Gravity.CENTER);
+            builder.setView(input);
                 builder.show();
             }
+        if (id == android.R.id.home) {
+            actionBar.setSelectedNavigationItem(0);
+            return true;
+        }
             return true;
         }
 
